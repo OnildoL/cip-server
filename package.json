@@ -1,0 +1,23 @@
+{
+  "name": "folder-pattern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "",
+    "start:": "",
+    "build": "",
+    "test:create-prisma-environment": "",
+    "test:install-prisma-environment": "",
+    "test:": "",
+    "test:watch": "",
+    "pretest:e2e": "",
+    "test:e2e": "",
+    "test:e2e:watch": "",
+    "test:coverage": "",
+    "test:ui": ""
+  },
+  "keywords": [],
+  "author": "Onildo Gonçalves",
+  "license": "ISC"
+}
