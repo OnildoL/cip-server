@@ -1,5 +1,5 @@
 {
-  "name": "folder-pattern",
+  "name": "cip-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,8 @@
     "build": "",
     "test:create-prisma-environment": "",
     "test:install-prisma-environment": "",
-    "test:": "",
-    "test:watch": "",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "pretest:e2e": "",
     "test:e2e": "",
     "test:e2e:watch": "",
@@ -19,5 +19,11 @@
   },
   "keywords": [],
   "author": "Onildo Gonçalves",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "20.2.5",
+    "typescript": "5.1.3",
+    "vite-tsconfig-paths": "4.2.0",
+    "vitest": "0.31.4"
+  }
 }
