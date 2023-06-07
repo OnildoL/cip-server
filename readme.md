@@ -14,7 +14,7 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 
 ### `Empresa & Setor`
 
-- [ ] Deve ser possível cadastrar uma empresa;
+- [x] Deve ser possível cadastrar uma empresa;
 - [ ] Deve ser possível listar todas as empresas;
 - [ ] Deve ser possível editar um empresa;
 - [ ] Deve ser possível desativar uma empresa;
@@ -41,7 +41,7 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 
 ### `Metas de compra e pedidos`
 
-- [ ] 
+- [ ]
 
 ### `Acertos`
 

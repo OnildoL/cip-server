@@ -6,24 +6,35 @@ interface CompanyProps {
   name: string;
   cnpj: string;
   system_number: number;
-  admin_id: UniqueEntityID;
+  activated: boolean;
+  discount?: number | null;
+  map?: "SIM" | "NÃO" | null;
+  shipping?: "CIF" | "FOB" | null;
+  admin_id?: UniqueEntityID;
   created_at?: Date;
+  updated_at?: Date;
 }
 
 export class Company extends Entity<CompanyProps> {
   static create(
-    props: Optional<CompanyProps, "created_at">,
+    props: Optional<CompanyProps, "activated" | "created_at" | "updated_at">,
     id?: UniqueEntityID
   ) {
     const company = new Company(
       {
         ...props,
+        activated: true,
         created_at: new Date(),
+        updated_at: new Date(),
       },
       id
     );
 
     return company;
+  }
+
+  private touch() {
+    this.props.updated_at = new Date();
   }
 
   get name() {
@@ -36,6 +47,15 @@ export class Company extends Entity<CompanyProps> {
 
   get system_number() {
     return this.props.system_number;
+  }
+
+  get activated() {
+    return this.props.activated;
+  }
+
+  set activated(activated: boolean) {
+    this.props.activated = activated;
+    this.touch();
   }
 
   get adminId() {

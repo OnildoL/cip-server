@@ -8,7 +8,10 @@ interface CreateCompanyUseCaseRequest {
   name: string;
   cnpj: string;
   system_number: number;
-  admin_id: string;
+  discount?: number | null;
+  map?: "SIM" | "NÃO" | null;
+  shipping?: "CIF" | "FOB" | null;
+  admin_id: UniqueEntityID; // admin_id não deve ser registrado ele serve para verificar se o usuário é admin para criar uma company
 }
 
 type CreateCompanyUseCaseResponse = Either<ExistingCompanyError, Company>;
@@ -19,9 +22,13 @@ export class CreateCompanyUseCase {
   async execute({
     name,
     cnpj,
+    discount = null,
+    map = null,
+    shipping = null,
     system_number,
     admin_id,
   }: CreateCompanyUseCaseRequest): Promise<CreateCompanyUseCaseResponse> {
+    // admin_id: new UniqueEntityID(admin_id), // fazer verificação se o usuário é um admin para poder criar uma company
     const companyRegistered = await this.companyRepository.findByCnpj(cnpj);
 
     if (companyRegistered) {
@@ -32,7 +39,9 @@ export class CreateCompanyUseCase {
       name,
       cnpj,
       system_number,
-      admin_id: new UniqueEntityID(admin_id),
+      discount,
+      map,
+      shipping,
     });
 
     await this.companyRepository.create(company);

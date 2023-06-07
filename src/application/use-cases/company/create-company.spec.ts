@@ -1,5 +1,6 @@
 import { InMemoryCompanyRepository } from "@/infrastructure/databases/repositories/in-memory/in-memory-company-repository";
 import { CreateCompanyUseCase } from "./create-company";
+import { UniqueEntityID } from "@/application/entities/value-objects/unique-entity-id";
 
 let inMemoryCompanyRepository: InMemoryCompanyRepository;
 let sut: CreateCompanyUseCase;
@@ -12,7 +13,7 @@ describe("Create company", () => {
 
   it("should be able to create a company", async () => {
     const result = await sut.execute({
-      admin_id: "1",
+      admin_id: new UniqueEntityID("1"),
       name: "NEW COMPANY EXAMPLE",
       cnpj: "80.557.730/0001-27",
       system_number: 123456,
