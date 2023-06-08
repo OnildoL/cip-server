@@ -3,6 +3,8 @@ import { Either, left, right } from "@/application/entities/either";
 import { ExistingCompanyError } from "@/application/use-cases/errors/existing-company-error";
 import { CompanyRepository } from "@/application/use-cases/ports/company-repository";
 import { UniqueEntityID } from "@/application/entities/value-objects/unique-entity-id";
+import { UserRepository } from "../ports/user-repository";
+import { UserisNotanAdmin } from "../errors/user-is-not-an-admin";
 
 interface CreateCompanyUseCaseRequest {
   name: string;
@@ -14,10 +16,16 @@ interface CreateCompanyUseCaseRequest {
   admin_id: UniqueEntityID; // admin_id não deve ser registrado ele serve para verificar se o usuário é admin para criar uma company
 }
 
-type CreateCompanyUseCaseResponse = Either<ExistingCompanyError, Company>;
+type CreateCompanyUseCaseResponse = Either<
+  UserisNotanAdmin | ExistingCompanyError,
+  Company
+>;
 
 export class CreateCompanyUseCase {
-  constructor(private companyRepository: CompanyRepository) {}
+  constructor(
+    private companyRepository: CompanyRepository,
+    private userRepository: UserRepository
+  ) {}
 
   async execute({
     name,
@@ -28,7 +36,12 @@ export class CreateCompanyUseCase {
     system_number,
     admin_id,
   }: CreateCompanyUseCaseRequest): Promise<CreateCompanyUseCaseResponse> {
-    // admin_id: new UniqueEntityID(admin_id), // fazer verificação se o usuário é um admin para poder criar uma company
+    const user = await this.userRepository.findById(admin_id);
+
+    if (!user?.admin) {
+      return left(new UserisNotanAdmin());
+    }
+
     const companyRegistered = await this.companyRepository.findByCnpj(cnpj);
 
     if (companyRegistered) {

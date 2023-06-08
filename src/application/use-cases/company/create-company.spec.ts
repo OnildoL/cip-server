@@ -2,19 +2,29 @@ import { InMemoryCompanyRepository } from "@/infrastructure/databases/repositori
 import { CreateCompanyUseCase } from "./create-company";
 import { UniqueEntityID } from "@/application/entities/value-objects/unique-entity-id";
 import { ExistingCompanyError } from "../errors/existing-company-error";
+import { InMemoryUserRepository } from "@/infrastructure/databases/repositories/in-memory/in-memory-user-repository";
+import { makeUser } from "@/main/factories/test/make-user";
 
 let inMemoryCompanyRepository: InMemoryCompanyRepository;
+let inMemoryUserRepository: InMemoryUserRepository;
 let sut: CreateCompanyUseCase;
 
 describe("Create company", () => {
   beforeEach(() => {
     inMemoryCompanyRepository = new InMemoryCompanyRepository();
-    sut = new CreateCompanyUseCase(inMemoryCompanyRepository);
+    inMemoryUserRepository = new InMemoryUserRepository();
+    sut = new CreateCompanyUseCase(
+      inMemoryCompanyRepository,
+      inMemoryUserRepository
+    );
   });
 
   it("should be able to create a company", async () => {
+    const user = await makeUser(true);
+    await inMemoryUserRepository.create(user);
+
     const result = await sut.execute({
-      admin_id: new UniqueEntityID("1"),
+      admin_id: new UniqueEntityID(user.id.toValue()),
       name: "NEW COMPANY EXAMPLE",
       cnpj: "80.557.730/0001-27",
       system_number: 123456,
@@ -30,8 +40,11 @@ describe("Create company", () => {
   });
 
   it("should not be able to create a company that already exists", async () => {
+    const user = await makeUser(true);
+    await inMemoryUserRepository.create(user);
+
     const company = {
-      admin_id: new UniqueEntityID("1"),
+      admin_id: new UniqueEntityID(user.id.toValue()),
       name: "NEW COMPANY EXAMPLE",
       cnpj: "80.557.730/0001-27",
       system_number: 123456,
