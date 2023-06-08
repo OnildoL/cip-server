@@ -18,7 +18,6 @@ describe("Create sector", () => {
     expect(result.isRight()).toBe(true);
 
     if (result.isRight()) {
-      console.log(result.value);
       expect(inMemorySectorRepository.items[0].name).toEqual(result.value.name);
     }
   });

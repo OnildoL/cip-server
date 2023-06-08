@@ -19,7 +19,7 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 - [ ] Deve ser possível editar um empresa;
 - [ ] Deve ser possível desativar uma empresa;
 
-- [ ] Deve ser possível cadastrar um setor;
+- [x] Deve ser possível cadastrar um setor;
 - [ ] Deve ser possível listar todas os setores;
 - [ ] Deve ser possível editar um setor;
 - [ ] Deve ser possível excluir um setor;
