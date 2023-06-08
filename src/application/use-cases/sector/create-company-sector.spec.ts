@@ -1,5 +1,5 @@
 import { InMemoryCompanySectorRepository } from "@/infrastructure/databases/repositories/in-memory/in-memory-company-sector-repository";
-import { CreateCompanySectorUseCase } from "./company-sector";
+import { CreateCompanySectorUseCase } from "./create-company-sector";
 import { UniqueEntityID } from "@/application/entities/value-objects/unique-entity-id";
 
 let inMemoryCompanySectorRepository: InMemoryCompanySectorRepository;
