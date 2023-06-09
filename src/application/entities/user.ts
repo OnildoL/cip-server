@@ -11,8 +11,9 @@ export interface UserProps {
   role: string;
   activated: boolean;
   admin: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
+  admin_id?: UniqueEntityID;
 }
 
 export class User extends Entity<UserProps> {

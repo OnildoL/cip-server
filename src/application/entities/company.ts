@@ -2,7 +2,7 @@ import { Optional } from "types/optional";
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
 
-interface CompanyProps {
+export interface CompanyProps {
   name: string;
   cnpj: string;
   system_number: number;

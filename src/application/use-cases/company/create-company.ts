@@ -13,7 +13,7 @@ interface CreateCompanyUseCaseRequest {
   discount?: number | null;
   map?: "SIM" | "NÃO" | null;
   shipping?: "CIF" | "FOB" | null;
-  admin_id: UniqueEntityID; // admin_id não deve ser registrado ele serve para verificar se o usuário é admin para criar uma company
+  admin_id: UniqueEntityID;
 }
 
 type CreateCompanyUseCaseResponse = Either<

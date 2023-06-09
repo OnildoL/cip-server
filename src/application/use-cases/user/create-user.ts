@@ -6,6 +6,7 @@ import { UserRepository } from "../ports/user-repository";
 import { Password } from "@/application/entities/value-objects/password";
 import { InvalidPasswordError } from "@/application/entities/errors/invalid-password-error";
 import { BcryptEncoder } from "@/infrastructure/external/encoder/bcrypt-encoder";
+import { UserisNotanAdmin } from "../errors/user-is-not-an-admin";
 
 interface CreateUserUseCaseRequest {
   company_id: UniqueEntityID;
@@ -13,9 +14,13 @@ interface CreateUserUseCaseRequest {
   password: string;
   name: string;
   role: string;
+  admin_id: UniqueEntityID;
 }
 
-type CreateUserUseCaseResponse = Either<ExistingUserError, User>;
+type CreateUserUseCaseResponse = Either<
+  UserisNotanAdmin | ExistingUserError,
+  User
+>;
 
 export class CreateUserUseCase {
   constructor(
@@ -29,7 +34,14 @@ export class CreateUserUseCase {
     password,
     role,
     user,
+    admin_id,
   }: CreateUserUseCaseRequest): Promise<CreateUserUseCaseResponse> {
+    const isAdmin = await this.userRepository.findById(admin_id);
+
+    if (!isAdmin?.admin) {
+      return left(new UserisNotanAdmin());
+    }
+
     const userRegistered = await this.userRepository.findByUser(user);
 
     if (userRegistered) {

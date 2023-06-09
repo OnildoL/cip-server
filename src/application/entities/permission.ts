@@ -1,9 +1,10 @@
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
 
-interface PermissionProps {
+export interface PermissionProps {
   name: string;
   type: string;
+  admin_id?: UniqueEntityID;
 }
 
 export class Permission extends Entity<PermissionProps> {
@@ -19,5 +20,9 @@ export class Permission extends Entity<PermissionProps> {
 
   get type() {
     return this.props.type;
+  }
+
+  get admin_id() {
+    return this.props.admin_id;
   }
 }
