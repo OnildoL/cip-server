@@ -20,7 +20,7 @@ export class CreatePermissionUserUseCase {
     private permissionUserRepository: PermissionUserRepository,
     private userRepository: UserRepository
   ) {}
-
+  // Talvez colocar uma verificação se tal permissão já foi registrada para o usuário.
   async execute({
     permission_id,
     user_id,

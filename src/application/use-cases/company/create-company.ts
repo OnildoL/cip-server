@@ -9,7 +9,7 @@ import { UserisNotanAdmin } from "../errors/user-is-not-an-admin";
 interface CreateCompanyUseCaseRequest {
   name: string;
   cnpj: string;
-  system_number: number;
+  system_number: number; // Talvez uma verificação se existe um mesmo número no sistema ja registrado.
   discount?: number | null;
   map?: "SIM" | "NÃO" | null;
   shipping?: "CIF" | "FOB" | null;

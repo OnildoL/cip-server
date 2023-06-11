@@ -4,6 +4,7 @@ import { CreateUserUseCase } from "./create-user";
 import { ExistingUserError } from "../errors/existing-user-error";
 import { BcryptEncoder } from "@/infrastructure/external/encoder/bcrypt-encoder";
 import { makeUser } from "@/main/factories/test/make-user";
+import { UserisNotanAdmin } from "../errors/user-is-not-an-admin";
 
 let inMemoryUserRepository: InMemoryUserRepository;
 let encoderRepository: BcryptEncoder;
@@ -31,6 +32,7 @@ describe("Create user", () => {
     });
 
     expect(result.isRight()).toBe(true);
+    expect(user.admin).toBe(true);
 
     if (result.isRight()) {
       expect(inMemoryUserRepository.items[1]).toEqual(
@@ -85,5 +87,23 @@ describe("Create user", () => {
 
       expect(isPasswordCorrectlyHashed).toBe(true);
     }
+  });
+
+  it("it should not be possible for a non-administrator to create a user.", async () => {
+    const user = await makeUser(false);
+
+    await inMemoryUserRepository.create(user);
+
+    const result = await sut.execute({
+      admin_id: new UniqueEntityID(user.id.toValue()),
+      company_id: new UniqueEntityID("1"),
+      user: 3144,
+      name: "NEW USER EXAMPLE",
+      password: "123456",
+      role: "COORDINATOR",
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(UserisNotanAdmin);
   });
 });

@@ -14,7 +14,7 @@ type CreateCompanySectorUseCaseResponse = Either<null, CompanySector>;
 
 export class CreateCompanySectorUseCase {
   constructor(private companySectorRepository: CompanySectorRepository) {}
-
+  // Talvez colocar uma verificação se tal setor já foi registrada na loja.
   async execute({
     company_id,
     sector_id,

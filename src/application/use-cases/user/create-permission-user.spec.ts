@@ -5,6 +5,7 @@ import { InMemoryUserRepository } from "@/infrastructure/databases/repositories/
 import { makeUser } from "@/main/factories/test/make-user";
 import { InMemoryCompanyRepository } from "@/infrastructure/databases/repositories/in-memory/in-memory-company-repository";
 import { makePermission } from "@/main/factories/test/make-permission";
+import { UserisNotanAdmin } from "../errors/user-is-not-an-admin";
 
 let inMemoryPermissionUserRepository: InMemoryPermissionUserRepository;
 let inMemoryCompanyRepository: InMemoryCompanyRepository;
@@ -34,6 +35,7 @@ describe("Create company sector", () => {
     });
 
     expect(result.isRight()).toBe(true);
+    expect(user.admin).toBe(true);
 
     if (result.isRight()) {
       expect(inMemoryPermissionUserRepository.items[0].permission_id).toEqual(
@@ -43,5 +45,20 @@ describe("Create company sector", () => {
         result.value.user_id
       );
     }
+  });
+
+  it("it should not be possible for a non-administrator to create a user permission.", async () => {
+    const user = await makeUser(false);
+    const permission = await makePermission();
+
+    await inMemoryUserRepository.create(user);
+
+    const result = await sut.execute({
+      permission_id: new UniqueEntityID(permission.id.toValue()),
+      user_id: new UniqueEntityID(user.id.toValue()),
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(UserisNotanAdmin);
   });
 });

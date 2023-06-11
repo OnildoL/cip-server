@@ -4,6 +4,7 @@ import { ExistingPermissionError } from "../errors/existing-permission-error";
 import { InMemoryUserRepository } from "@/infrastructure/databases/repositories/in-memory/in-memory-user-repository";
 import { makeUser } from "@/main/factories/test/make-user";
 import { UniqueEntityID } from "@/application/entities/value-objects/unique-entity-id";
+import { UserisNotanAdmin } from "../errors/user-is-not-an-admin";
 
 let inMemoryPermissionRepository: InMemoryPermissionRepository;
 let inMemoryUserRepository: InMemoryUserRepository;
@@ -31,6 +32,7 @@ describe("Create permission", () => {
     });
 
     expect(result.isRight()).toBe(true);
+    expect(user.admin).toBe(true);
 
     if (result.isRight()) {
       expect(inMemoryPermissionRepository.items[0].name).toEqual(
@@ -56,5 +58,20 @@ describe("Create permission", () => {
 
     expect(result.isLeft()).toBe(true);
     expect(result.value).toBeInstanceOf(ExistingPermissionError);
+  });
+
+  it("it should not be possible for a non-administrator to create a permission.", async () => {
+    const user = await makeUser(false);
+
+    await inMemoryUserRepository.create(user);
+
+    const result = await sut.execute({
+      name: "GOAL",
+      type: "CREATE",
+      admin_id: new UniqueEntityID(user.id.toValue()),
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(UserisNotanAdmin);
   });
 });

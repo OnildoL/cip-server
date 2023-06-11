@@ -33,7 +33,7 @@ export class CreatePermissionUseCase {
     if (!user?.admin) {
       return left(new UserisNotanAdmin());
     }
-
+    // Talvez alterar o nome para findByPermission
     const permissionRegistered = await this.permissionRepository.findByName(
       name,
       type
