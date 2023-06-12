@@ -43,6 +43,8 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 
 - [x] Deve ser possível cadastrar uma meta;
 
+- [x] Deve ser possível cadastrar um pedido;
+
 ### `Acertos`
 
 - [ ]
