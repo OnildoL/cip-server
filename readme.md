@@ -26,7 +26,7 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 
 ### `Usuário`
 
-- [ ] Deve ser possível se cadastrar;
+- [x] Deve ser possível se cadastrar;
 - [ ] Deve ser possível listar todos os usuários;
 - [ ] Deve ser possível editar um usuário;
 - [ ] Deve ser possível desativar um usuário;
@@ -34,14 +34,14 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 
 ### `Permissões`
 
-- [ ] Deve ser possível cadastrar uma permissão;
+- [x] Deve ser possível cadastrar uma permissão;
 - [ ] Deve ser possível listar todas as permissões
 - [ ] Deve ser possível editar uma permissão;
 - [ ] Deve ser possível excluir uma permissão;
 
 ### `Metas de compra e pedidos`
 
-- [ ]
+- [x] Deve ser possível cadastrar uma meta;
 
 ### `Acertos`
 
@@ -57,7 +57,7 @@ São as características do sistema que garantem sua qualidade e adequação ao 
 
 ### `Usuário`
 
-- [ ] A senha do usuário precisa estar criptografada;
+- [x] A senha do usuário precisa estar criptografada;
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token);
 - [ ]
 
@@ -85,7 +85,7 @@ São as restrições, políticas, procedimentos e diretrizes que regem a operaç
 
 ### `Usuário`
 
-- [ ] O usuário não deve poder se cadastrar com um e-mail duplicado;
+- [x] O usuário não deve poder se cadastrar com um usuário duplicado;
 
 ### `Metas de compra e pedidos`
 
