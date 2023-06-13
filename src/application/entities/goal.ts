@@ -63,7 +63,7 @@ export class Goal extends Entity<GoalProps> {
     this.touch();
   }
 
-  get createdAt() {
+  get created_at() {
     return this.props.created_at;
   }
 }

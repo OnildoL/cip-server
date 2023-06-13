@@ -9,6 +9,7 @@ interface CreateOrderUseCaseRequest {
   name: string;
   amount_in_cent: number;
   date: Date;
+  comment?: string | null;
 }
 
 type CreateOrderUseCaseResponse = Either<null, Order>;
@@ -22,6 +23,7 @@ export class CreateOrderUseCase {
     name,
     amount_in_cent,
     date,
+    comment = null,
   }: CreateOrderUseCaseRequest): Promise<CreateOrderUseCaseResponse> {
     const order = Order.create({
       company_id,
@@ -29,6 +31,7 @@ export class CreateOrderUseCase {
       name,
       amount_in_cent: amount_in_cent * 100,
       date,
+      comment,
     });
 
     await this.orderRepository.create(order);

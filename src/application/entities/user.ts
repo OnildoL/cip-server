@@ -100,7 +100,7 @@ export class User extends Entity<UserProps> {
     this.touch();
   }
 
-  get createdAt() {
+  get created_at() {
     return this.props.created_at;
   }
 }

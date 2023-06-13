@@ -7,9 +7,9 @@ export interface CompanyProps {
   cnpj: string;
   system_number: number;
   activated: boolean;
-  discount?: number | null;
-  map?: "SIM" | "NÃO" | null;
-  shipping?: "CIF" | "FOB" | null;
+  // discount?: number | null;
+  // map?: "SIM" | "NÃO" | null;
+  // shipping?: "CIF" | "FOB" | null;
   admin_id?: UniqueEntityID;
   created_at?: Date;
   updated_at?: Date;
@@ -58,11 +58,11 @@ export class Company extends Entity<CompanyProps> {
     this.touch();
   }
 
-  get adminId() {
+  get admin_id() {
     return this.props.admin_id;
   }
 
-  get createdAt() {
+  get created_at() {
     return this.props.created_at;
   }
 }

@@ -8,6 +8,7 @@ interface OrderProps {
   name: string;
   amount_in_cent: number;
   date: Date;
+  comment?: string | null;
   created_at?: Date;
   updated_at?: Date;
 }
@@ -68,7 +69,16 @@ export class Order extends Entity<OrderProps> {
     this.touch();
   }
 
-  get createdAt() {
+  get comment() {
+    return this.props.comment;
+  }
+
+  set comment(comment) {
+    this.props.comment = comment;
+    this.touch();
+  }
+
+  get created_at() {
     return this.props.created_at;
   }
 }
