@@ -10,9 +10,6 @@ interface CreateCompanyUseCaseRequest {
   name: string;
   cnpj: string;
   system_number: number; // Talvez uma verificação se existe um mesmo número no sistema ja registrado.
-  // discount?: number | null;
-  // map?: "SIM" | "NÃO" | null;
-  // shipping?: "CIF" | "FOB" | null;
   admin_id: UniqueEntityID;
 }
 
@@ -30,9 +27,6 @@ export class CreateCompanyUseCase {
   async execute({
     name,
     cnpj,
-    // discount = null,
-    // map = null,
-    // shipping = null,
     system_number,
     admin_id,
   }: CreateCompanyUseCaseRequest): Promise<CreateCompanyUseCaseResponse> {
@@ -52,9 +46,6 @@ export class CreateCompanyUseCase {
       name,
       cnpj,
       system_number,
-      // discount,
-      // map,
-      // shipping,
     });
 
     await this.companyRepository.create(company);

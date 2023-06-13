@@ -7,9 +7,6 @@ export interface CompanyProps {
   cnpj: string;
   system_number: number;
   activated: boolean;
-  // discount?: number | null;
-  // map?: "SIM" | "NÃO" | null;
-  // shipping?: "CIF" | "FOB" | null;
   admin_id?: UniqueEntityID;
   created_at?: Date;
   updated_at?: Date;
