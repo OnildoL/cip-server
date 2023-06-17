@@ -19,7 +19,7 @@ describe("Create product note", () => {
       unitary_in_cent: 39.9,
       cfop: 6102,
       icms: 4,
-      ipi: 20,
+      ipi: 9.75,
     });
 
     expect(result.isRight()).toBe(true);
@@ -34,6 +34,8 @@ describe("Create product note", () => {
       expect(inMemoryProductNoteRepository.items[0].unitary_in_cent).toEqual(
         3990
       );
+      expect(inMemoryProductNoteRepository.items[0].icms).toEqual(400);
+      expect(inMemoryProductNoteRepository.items[0].ipi).toEqual(975);
     }
   });
 });

@@ -33,8 +33,8 @@ export class CreateProductNoteUseCase {
       cfop,
       quantity,
       unitary_in_cent: unitary_in_cent * 100,
-      icms,
-      ipi,
+      icms: icms * 100,
+      ipi: ipi * 100,
     });
 
     await this.productNoteRepository.create(productNote);
