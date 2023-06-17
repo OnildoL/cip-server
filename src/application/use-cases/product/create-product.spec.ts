@@ -21,7 +21,6 @@ describe("Create product", () => {
     expect(result.isRight()).toBe(true);
 
     if (result.isRight()) {
-      console.log(result.value);
       expect(inMemoryProductRepository.items[0].isbn).toEqual(
         result.value.isbn
       );
