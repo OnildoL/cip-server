@@ -9,7 +9,6 @@ interface HitProps {
   total_sale_in_cent?: number | null;
   total_system_in_cent?: number | null;
   reason?: string | null;
-  symbolic?: string | null;
   situation?: "OK" | "ANALISAR" | null;
   date: Date;
   comment?: string | null;
@@ -84,15 +83,6 @@ export class Hit extends Entity<HitProps> {
 
   set reason(reason) {
     this.props.reason = reason;
-    this.touch();
-  }
-
-  get symbolic() {
-    return this.props.symbolic;
-  }
-
-  set symbolic(symbolic) {
-    this.props.symbolic = symbolic;
     this.touch();
   }
 

@@ -10,7 +10,6 @@ interface CreateHitUseCaseRequest {
   total_sale_in_cent?: number;
   total_system_in_cent?: number;
   reason?: string | null;
-  symbolic?: string | null;
   situation?: "OK" | "ANALISAR" | null;
   date: Date;
   comment?: string | null;
@@ -28,7 +27,6 @@ export class CreateHitUseCase {
     total_sale_in_cent = 0,
     total_system_in_cent = 0,
     reason = null,
-    symbolic = null,
     situation = null,
     date,
     comment = null,
@@ -40,7 +38,6 @@ export class CreateHitUseCase {
       total_sale_in_cent: total_sale_in_cent * 100,
       total_system_in_cent: total_system_in_cent * 100,
       reason,
-      symbolic,
       situation,
       date,
       comment,
