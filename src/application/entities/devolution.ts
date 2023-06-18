@@ -15,6 +15,7 @@ interface DevolutionProps {
   total_devolution_in_cent?: number;
   new_consignment_value_in_cent?: number;
   new_consignment_date?: Date | null;
+  filled?: Date;
   created_at?: Date;
   updated_at?: Date;
 }
@@ -141,6 +142,15 @@ export class Devolution extends Entity<DevolutionProps> {
 
   set new_consignment_date(new_consignment_date) {
     this.props.new_consignment_date = new_consignment_date;
+    this.touch();
+  }
+
+  get filled() {
+    return this.props.filled;
+  }
+
+  set filled(filled) {
+    this.props.filled = filled;
     this.touch();
   }
 
