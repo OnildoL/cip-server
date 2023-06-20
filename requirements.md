@@ -32,6 +32,7 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 ### `Metas de compra e pedidos`
 
 - [x] Deve ser possível cadastrar uma meta;
+- [x] Deve ser possível editar uma meta;
 
 - [x] Deve ser possível cadastrar um pedido;
 
@@ -81,13 +82,21 @@ São as restrições, políticas, procedimentos e diretrizes que regem a operaç
 
 ### `Metas de compra e pedidos`
 
-- [ ]
+- [x] Não deve ser possível tentar editar uma meta que não existe;
 
 ### `Acertos`
 
 - [ ]
 
 ### `Devoluções`
+
+- [ ]
+
+### `Conferência`
+
+- [ ] Realizar a conferência de forma que, mesmo que haja notas diferentes com produtos idênticos, a conferência seja separada por produtos, e não deve ser agrupada apenas porque possuem o mesmo código de barras, evitando a interpretação de uma quantidade maior do que a solicitada.
+
+### `RMA`
 
 - [ ]
 
