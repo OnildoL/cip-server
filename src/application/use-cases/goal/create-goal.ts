@@ -24,7 +24,7 @@ export class CreateGoalUseCase {
     const goal = Goal.create({
       company_id,
       company_sector_id,
-      amount_in_cent: amount_in_cent * 100,
+      amount_in_cent,
       date,
     });
 

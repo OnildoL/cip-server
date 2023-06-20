@@ -2,7 +2,7 @@ import { Optional } from "types/optional";
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
 
-interface GoalProps {
+export interface GoalProps {
   company_id: UniqueEntityID;
   company_sector_id: UniqueEntityID;
   amount_in_cent: number;
@@ -19,6 +19,7 @@ export class Goal extends Entity<GoalProps> {
     const goal = new Goal(
       {
         ...props,
+        amount_in_cent: props.amount_in_cent * 100,
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -50,7 +51,11 @@ export class Goal extends Entity<GoalProps> {
   }
 
   set amount_in_cent(amountinCent) {
-    this.props.amount_in_cent = amountinCent;
+    const correctingDecimalPlacesandConvertingtoNumber = Number(
+      (amountinCent * 100).toFixed(2)
+    );
+
+    this.props.amount_in_cent = correctingDecimalPlacesandConvertingtoNumber;
     this.touch();
   }
 
