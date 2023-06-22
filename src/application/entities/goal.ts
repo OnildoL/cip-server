@@ -16,10 +16,14 @@ export class Goal extends Entity<GoalProps> {
     props: Optional<GoalProps, "created_at" | "updated_at">,
     id?: UniqueEntityID
   ) {
+    const correctingDecimalPlacesandConvertingtoNumber = Number(
+      (props.amount_in_cent * 100).toFixed(2)
+    );
+
     const goal = new Goal(
       {
         ...props,
-        amount_in_cent: props.amount_in_cent * 100,
+        amount_in_cent: correctingDecimalPlacesandConvertingtoNumber,
         created_at: new Date(),
         updated_at: new Date(),
       },
