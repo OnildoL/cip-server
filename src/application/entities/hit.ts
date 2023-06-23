@@ -2,14 +2,14 @@ import { Optional } from "types/optional";
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
 
-interface HitProps {
+export interface HitProps {
   company_id: UniqueEntityID;
   last_hit?: Date | null;
   current_hit?: Date | null;
-  total_sale_in_cent?: number | null;
-  total_system_in_cent?: number | null;
+  total_sale_in_cent: number;
+  total_system_in_cent: number;
   reason?: string | null;
-  situation?: "OK" | "ANALISAR" | null;
+  situation?: string | null;
   date: Date;
   comment?: string | null;
   created_at?: Date;
@@ -24,6 +24,8 @@ export class Hit extends Entity<HitProps> {
     const hit = new Hit(
       {
         ...props,
+        total_sale_in_cent: convertValuetoCents(props.total_sale_in_cent),
+        total_system_in_cent: convertValuetoCents(props.total_system_in_cent),
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -64,7 +66,7 @@ export class Hit extends Entity<HitProps> {
   }
 
   set total_sale_in_cent(totalSaleinCent) {
-    this.props.total_sale_in_cent = totalSaleinCent;
+    this.props.total_sale_in_cent = convertValuetoCents(totalSaleinCent);
     this.touch();
   }
 
@@ -73,7 +75,7 @@ export class Hit extends Entity<HitProps> {
   }
 
   set total_system_in_cent(totalSysteminCent) {
-    this.props.total_system_in_cent = totalSysteminCent;
+    this.props.total_system_in_cent = convertValuetoCents(totalSysteminCent);
     this.touch();
   }
 
@@ -116,4 +118,12 @@ export class Hit extends Entity<HitProps> {
   get created_at() {
     return this.props.created_at;
   }
+}
+
+function convertValuetoCents(value: number) {
+  const correctingDecimalPlacesandConvertingtoNumber = Number(
+    (value * 100).toFixed(2)
+  );
+
+  return correctingDecimalPlacesandConvertingtoNumber;
 }

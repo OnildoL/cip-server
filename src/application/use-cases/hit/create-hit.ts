@@ -7,8 +7,8 @@ interface CreateHitUseCaseRequest {
   company_id: UniqueEntityID;
   last_hit?: Date | null;
   current_hit?: Date | null;
-  total_sale_in_cent?: number;
-  total_system_in_cent?: number;
+  total_sale_in_cent: number;
+  total_system_in_cent: number;
   reason?: string | null;
   situation?: "OK" | "ANALISAR" | null;
   date: Date;
@@ -35,8 +35,8 @@ export class CreateHitUseCase {
       company_id,
       last_hit,
       current_hit,
-      total_sale_in_cent: total_sale_in_cent * 100,
-      total_system_in_cent: total_system_in_cent * 100,
+      total_sale_in_cent,
+      total_system_in_cent,
       reason,
       situation,
       date,
