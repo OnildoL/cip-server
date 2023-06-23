@@ -23,4 +23,10 @@ export class InMemoryHitRepository implements HitRepository {
 
     this.items[itemIndex] = hit;
   }
+
+  async delete(hit: Hit) {
+    const itemIndex = this.items.findIndex((item) => item.id === hit.id);
+
+    this.items.splice(itemIndex, 1);
+  }
 }
