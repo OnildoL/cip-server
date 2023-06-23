@@ -14,7 +14,7 @@ describe("Edit goal", () => {
   });
 
   it("should be able to Edit a goal", async () => {
-    const newGoal = await makeGoal({}, new UniqueEntityID("goal-1"));
+    const newGoal = makeGoal({}, new UniqueEntityID("goal-1"));
 
     await inMemoryGoalRepository.create(newGoal);
 

@@ -24,8 +24,8 @@ describe("Create company sector", () => {
   });
 
   it("should be able to create a permission user", async () => {
-    const user = await makeUser(true);
-    const permission = await makePermission();
+    const user = makeUser(true);
+    const permission = makePermission();
 
     await inMemoryUserRepository.create(user);
 
@@ -48,8 +48,8 @@ describe("Create company sector", () => {
   });
 
   it("it should not be possible for a non-administrator to create a user permission.", async () => {
-    const user = await makeUser(false);
-    const permission = await makePermission();
+    const user = makeUser(false);
+    const permission = makePermission();
 
     await inMemoryUserRepository.create(user);
 

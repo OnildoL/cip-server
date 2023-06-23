@@ -1,7 +1,7 @@
 import { Company, CompanyProps } from "@/application/entities/company";
 import { UniqueEntityID } from "@/application/entities/value-objects/unique-entity-id";
 
-export async function makeCompany(
+export function makeCompany(
   override?: Partial<CompanyProps>,
   id?: UniqueEntityID
 ) {

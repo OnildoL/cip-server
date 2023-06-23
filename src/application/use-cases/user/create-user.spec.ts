@@ -18,7 +18,7 @@ describe("Create user", () => {
   });
 
   it("should be able to create a user", async () => {
-    const user = await makeUser(true);
+    const user = makeUser(true);
 
     await inMemoryUserRepository.create(user);
 
@@ -42,7 +42,7 @@ describe("Create user", () => {
   });
 
   it("should not be able to create a user that already exists", async () => {
-    const user = await makeUser(true);
+    const user = makeUser(true);
 
     await inMemoryUserRepository.create(user);
 
@@ -64,7 +64,7 @@ describe("Create user", () => {
   });
 
   it("should hash user password upon registration", async () => {
-    const user = await makeUser(true);
+    const user = makeUser(true);
 
     await inMemoryUserRepository.create(user);
 
@@ -90,7 +90,7 @@ describe("Create user", () => {
   });
 
   it("it should not be possible for a non-administrator to create a user.", async () => {
-    const user = await makeUser(false);
+    const user = makeUser(false);
 
     await inMemoryUserRepository.create(user);
 

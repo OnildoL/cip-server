@@ -21,7 +21,7 @@ describe("Create company", () => {
   });
 
   it("should be able to create a company", async () => {
-    const user = await makeUser(true);
+    const user = makeUser(true);
 
     await inMemoryUserRepository.create(user);
 
@@ -43,7 +43,7 @@ describe("Create company", () => {
   });
 
   it("should not be able to create a company that already exists", async () => {
-    const user = await makeUser(true);
+    const user = makeUser(true);
 
     await inMemoryUserRepository.create(user);
 
@@ -63,7 +63,7 @@ describe("Create company", () => {
   });
 
   it("it should not be possible for a non-administrator to create a company.", async () => {
-    const user = await makeUser(false);
+    const user = makeUser(false);
 
     await inMemoryUserRepository.create(user);
 

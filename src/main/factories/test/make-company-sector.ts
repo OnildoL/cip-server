@@ -4,7 +4,7 @@ import {
 } from "@/application/entities/company-sector";
 import { UniqueEntityID } from "@/application/entities/value-objects/unique-entity-id";
 
-export async function makeCompanySector(
+export function makeCompanySector(
   override?: Partial<CompanySectorProps>,
   id?: UniqueEntityID
 ) {

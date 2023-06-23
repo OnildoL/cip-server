@@ -1,10 +1,7 @@
 import { Goal, GoalProps } from "@/application/entities/goal";
 import { UniqueEntityID } from "@/application/entities/value-objects/unique-entity-id";
 
-export async function makeGoal(
-  override?: Partial<GoalProps>,
-  id?: UniqueEntityID
-) {
+export function makeGoal(override?: Partial<GoalProps>, id?: UniqueEntityID) {
   const goal = Goal.create(
     {
       company_id: new UniqueEntityID("1"),

@@ -21,7 +21,7 @@ describe("Create permission", () => {
   });
 
   it("should be able to create a permission", async () => {
-    const user = await makeUser(true);
+    const user = makeUser(true);
 
     await inMemoryUserRepository.create(user);
 
@@ -42,7 +42,7 @@ describe("Create permission", () => {
   });
 
   it("should not be able to create a permission that already exists", async () => {
-    const user = await makeUser(true);
+    const user = makeUser(true);
 
     await inMemoryUserRepository.create(user);
 
@@ -61,7 +61,7 @@ describe("Create permission", () => {
   });
 
   it("it should not be possible for a non-administrator to create a permission.", async () => {
-    const user = await makeUser(false);
+    const user = makeUser(false);
 
     await inMemoryUserRepository.create(user);
 

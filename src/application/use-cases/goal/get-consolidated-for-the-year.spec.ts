@@ -25,13 +25,13 @@ describe("Fetch consolidation goals", () => {
   });
 
   it("should be able to fetch consolidation goals", async () => {
-    const company = await makeCompany({}, new UniqueEntityID("new-company-1"));
+    const company = makeCompany({}, new UniqueEntityID("new-company-1"));
 
-    const sector = await makeSector({
+    const sector = makeSector({
       name: "INFORMATICA",
     });
 
-    const companySector = await makeCompanySector({
+    const companySector = makeCompanySector({
       company_id: company.id,
       sector_id: sector.id,
       type: "MAIN",
@@ -41,21 +41,21 @@ describe("Fetch consolidation goals", () => {
     await inMemoryCompanySectorRepository.create(companySector);
 
     await inMemoryGoalRepository.create(
-      await makeGoal({
+      makeGoal({
         company_sector_id: companySector.id,
         company_id: companySector.company_id,
         date: new Date(2022, 0, 20),
       })
     );
     await inMemoryGoalRepository.create(
-      await makeGoal({
+      makeGoal({
         company_sector_id: companySector.id,
         company_id: companySector.company_id,
         date: new Date(2023, 1, 18),
       })
     );
     await inMemoryGoalRepository.create(
-      await makeGoal({
+      makeGoal({
         company_sector_id: companySector.id,
         company_id: companySector.company_id,
         date: new Date(2023, 2, 23),
@@ -84,23 +84,23 @@ describe("Fetch consolidation goals", () => {
   });
 
   it("should be able to fetch consolidation goals with a subsector", async () => {
-    const company = await makeCompany({}, new UniqueEntityID("new-company-1"));
+    const company = makeCompany({}, new UniqueEntityID("new-company-1"));
 
-    const mainSector = await makeSector({
+    const mainSector = makeSector({
       name: "INFORMATICA",
     });
 
-    const subSector = await makeSector({
+    const subSector = makeSector({
       name: "GAMES",
     });
 
-    const companySectorMain = await makeCompanySector({
+    const companySectorMain = makeCompanySector({
       company_id: company.id,
       sector_id: mainSector.id,
       type: "MAIN",
     });
 
-    const companySectorSub = await makeCompanySector({
+    const companySectorSub = makeCompanySector({
       company_id: company.id,
       sector_id: subSector.id,
       type: "SUB",
@@ -113,28 +113,28 @@ describe("Fetch consolidation goals", () => {
     await inMemoryCompanySectorRepository.create(companySectorSub);
 
     await inMemoryGoalRepository.create(
-      await makeGoal({
+      makeGoal({
         company_sector_id: companySectorMain.id,
         company_id: companySectorMain.company_id,
         date: new Date(2022, 0, 20),
       })
     );
     await inMemoryGoalRepository.create(
-      await makeGoal({
+      makeGoal({
         company_sector_id: companySectorMain.id,
         company_id: companySectorMain.company_id,
         date: new Date(2023, 1, 18),
       })
     );
     await inMemoryGoalRepository.create(
-      await makeGoal({
+      makeGoal({
         company_sector_id: companySectorMain.id,
         company_id: companySectorMain.company_id,
         date: new Date(2023, 2, 23),
       })
     );
     await inMemoryGoalRepository.create(
-      await makeGoal({
+      makeGoal({
         company_sector_id: companySectorSub.id,
         company_id: companySectorSub.company_id,
         date: new Date(2023, 2, 27),
