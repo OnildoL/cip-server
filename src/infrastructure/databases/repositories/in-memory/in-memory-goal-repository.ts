@@ -1,5 +1,4 @@
 import { Goal } from "@/application/entities/goal";
-import { UniqueEntityID } from "@/application/entities/value-objects/unique-entity-id";
 import { GoalRepository } from "@/application/use-cases/ports/goal-repository";
 
 export class InMemoryGoalRepository implements GoalRepository {
@@ -13,6 +12,16 @@ export class InMemoryGoalRepository implements GoalRepository {
     }
 
     return result;
+  }
+
+  async findMany(companySectorId: string, date: number) {
+    const goals = this.items.filter(
+      (item) =>
+        item.date.getFullYear() === date &&
+        item.company_sector_id.toValue() === companySectorId
+    );
+
+    return goals;
   }
 
   async create(goal: Goal) {
