@@ -33,4 +33,10 @@ export class InMemoryGoalRepository implements GoalRepository {
 
     this.items[itemIndex] = goal;
   }
+
+  async delete(goal: Goal) {
+    const itemIndex = this.items.findIndex((item) => item.id === goal.id);
+
+    this.items.splice(itemIndex, 1);
+  }
 }
