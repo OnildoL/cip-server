@@ -1,7 +1,7 @@
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
 
-interface CompanySectorProps {
+export interface CompanySectorProps {
   company_id: UniqueEntityID;
   sector_id: UniqueEntityID;
   type: "MAIN" | "SUB";

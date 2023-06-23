@@ -1,7 +1,7 @@
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
 
-interface SectorProps {
+export interface SectorProps {
   name: string;
 }
 
