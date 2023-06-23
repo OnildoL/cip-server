@@ -5,6 +5,7 @@ import { HitRepository } from "../ports/hit-repository";
 
 interface CreateHitUseCaseRequest {
   company_id: UniqueEntityID;
+  provider_id: UniqueEntityID;
   last_hit?: Date | null;
   current_hit?: Date | null;
   total_sale_in_cent: number;
@@ -22,10 +23,11 @@ export class CreateHitUseCase {
 
   async execute({
     company_id,
+    provider_id,
     last_hit = null,
     current_hit = null,
-    total_sale_in_cent = 0,
-    total_system_in_cent = 0,
+    total_sale_in_cent,
+    total_system_in_cent,
     reason = null,
     situation = null,
     date,
@@ -33,6 +35,7 @@ export class CreateHitUseCase {
   }: CreateHitUseCaseRequest): Promise<CreateHitUseCaseResponse> {
     const hit = Hit.create({
       company_id,
+      provider_id,
       last_hit,
       current_hit,
       total_sale_in_cent,

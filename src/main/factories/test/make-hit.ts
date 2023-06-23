@@ -4,6 +4,7 @@ import { UniqueEntityID } from "@/application/entities/value-objects/unique-enti
 export function makeHit(override?: Partial<HitProps>, id?: UniqueEntityID) {
   const hit = Hit.create(
     {
+      provider_id: new UniqueEntityID("1"),
       company_id: new UniqueEntityID("1"),
       last_hit: null,
       current_hit: null,

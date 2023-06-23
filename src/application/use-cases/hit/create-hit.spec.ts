@@ -13,7 +13,10 @@ describe("Create hit", () => {
 
   it("should be able to create a hit", async () => {
     const result = await sut.execute({
+      provider_id: new UniqueEntityID("1"),
       company_id: new UniqueEntityID("1"),
+      total_sale_in_cent: 0,
+      total_system_in_cent: 0,
       date: new Date(),
     });
 

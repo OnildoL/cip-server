@@ -4,6 +4,7 @@ import { UniqueEntityID } from "./value-objects/unique-entity-id";
 
 export interface HitProps {
   company_id: UniqueEntityID;
+  provider_id: UniqueEntityID;
   last_hit?: Date | null;
   current_hit?: Date | null;
   total_sale_in_cent: number;
@@ -41,6 +42,10 @@ export class Hit extends Entity<HitProps> {
 
   get company_id() {
     return this.props.company_id;
+  }
+
+  get provider_id() {
+    return this.props.provider_id;
   }
 
   get last_hit() {
