@@ -4,6 +4,15 @@ import { HitRepository } from "@/application/use-cases/ports/hit-repository";
 export class InMemoryHitRepository implements HitRepository {
   public items: Hit[] = [];
 
+  async findManyByProvider(providerId: string, page: number) {
+    const hits = this.items
+      .filter((item) => item.provider_id.toValue() === providerId)
+      .sort((a, b) => b.date.getTime() - a.date.getTime())
+      .slice((page - 1) * 20, page * 20);
+
+    return hits;
+  }
+
   async findById(id: string) {
     const result = this.items.find((item) => item.id.toValue() === id);
 
