@@ -1,4 +1,4 @@
-## CIP | Esta é uma API de um back-end para controle interno de notas e produtos. Foi escrito em Node.js e TypeScript seguindo os princípios da Clean Architecture.
+## CIP é uma API de backend para controle interno de notas, produtos, metas, pedidos de compra, acertos e devoluções. Foi escrita em Node.js e TypeScript, seguindo os princípios da Clean Architecture + S.O.L.I.D.
 
 Para executar este projeto você precisará criar um arquivo `.env` na raiz do seu projeto com valores para as seguintes variáveis de ambiente:
 

@@ -1,7 +1,7 @@
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
 
-interface ProviderProps {
+export interface ProviderProps {
   name: string;
   cnpj: string;
   system_number: number;

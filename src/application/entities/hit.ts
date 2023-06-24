@@ -13,6 +13,12 @@ export interface HitProps {
   situation?: string | null;
   date: Date;
   comment?: string | null;
+  /**
+   * Acrescentar três propriedades:
+   *    consigned_balance: number;
+   *    replacement: number;
+   *    replacement_date: Date;
+   */
   created_at?: Date;
   updated_at?: Date;
 }

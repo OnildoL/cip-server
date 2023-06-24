@@ -5,6 +5,10 @@ import { EmissionRepository } from "../ports/emission-repository";
 
 interface CreateEmissionUseCaseRequest {
   bond_id: UniqueEntityID;
+  /**
+   * Acrescentar uma propriedade:
+   *    symbolic: number;
+   */
   nf: number;
   comment?: string | null;
 }

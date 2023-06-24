@@ -13,7 +13,7 @@ let inMemoryCompanySectorRepository: InMemoryCompanySectorRepository;
 let inMemorySectorRepository: InMemorySectorRepository;
 let sut: GetConsolidatedForTheYearUseCase;
 
-describe("Fetch consolidation goals", () => {
+describe("Get consolidation goals", () => {
   beforeEach(() => {
     inMemorySectorRepository = new InMemorySectorRepository();
     inMemoryGoalRepository = new InMemoryGoalRepository();
@@ -24,7 +24,7 @@ describe("Fetch consolidation goals", () => {
     sut = new GetConsolidatedForTheYearUseCase(inMemoryCompanySectorRepository);
   });
 
-  it("should be able to fetch consolidation goals", async () => {
+  it("should be able to get consolidation goals", async () => {
     const company = makeCompany({}, new UniqueEntityID("new-company-1"));
 
     const sector = makeSector({
@@ -83,7 +83,7 @@ describe("Fetch consolidation goals", () => {
     }
   });
 
-  it("should be able to fetch consolidation goals with a subsector", async () => {
+  it("should be able to get consolidation goals with a subsector", async () => {
     const company = makeCompany({}, new UniqueEntityID("new-company-1"));
 
     const mainSector = makeSector({
