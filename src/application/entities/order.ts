@@ -1,6 +1,7 @@
 import { Optional } from "types/optional";
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
+import { convertValuetoCents } from "../library/convert-value-to-cents";
 
 interface OrderProps {
   company_id: UniqueEntityID;
@@ -21,6 +22,7 @@ export class Order extends Entity<OrderProps> {
     const order = new Order(
       {
         ...props,
+        amount_in_cent: convertValuetoCents(props.amount_in_cent),
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -56,7 +58,7 @@ export class Order extends Entity<OrderProps> {
   }
 
   set amount_in_cent(amountinCent) {
-    this.props.amount_in_cent = amountinCent;
+    this.props.amount_in_cent = convertValuetoCents(amountinCent);
     this.touch();
   }
 

@@ -1,6 +1,7 @@
 import { Optional } from "types/optional";
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
+import { convertValuetoCents } from "../library/convert-value-to-cents";
 
 export interface GoalProps {
   company_id: UniqueEntityID;
@@ -16,14 +17,10 @@ export class Goal extends Entity<GoalProps> {
     props: Optional<GoalProps, "created_at" | "updated_at">,
     id?: UniqueEntityID
   ) {
-    const correctingDecimalPlacesandConvertingtoNumber = Number(
-      (props.amount_in_cent * 100).toFixed(2)
-    );
-
     const goal = new Goal(
       {
         ...props,
-        amount_in_cent: correctingDecimalPlacesandConvertingtoNumber,
+        amount_in_cent: convertValuetoCents(props.amount_in_cent),
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -55,11 +52,7 @@ export class Goal extends Entity<GoalProps> {
   }
 
   set amount_in_cent(amountinCent) {
-    const correctingDecimalPlacesandConvertingtoNumber = Number(
-      (amountinCent * 100).toFixed(2)
-    );
-
-    this.props.amount_in_cent = correctingDecimalPlacesandConvertingtoNumber;
+    this.props.amount_in_cent = convertValuetoCents(amountinCent);
     this.touch();
   }
 

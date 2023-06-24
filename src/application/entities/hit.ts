@@ -1,6 +1,7 @@
 import { Optional } from "types/optional";
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
+import { convertValuetoCents } from "../library/convert-value-to-cents";
 
 export interface HitProps {
   company_id: UniqueEntityID;
@@ -129,12 +130,4 @@ export class Hit extends Entity<HitProps> {
   get created_at() {
     return this.props.created_at;
   }
-}
-
-function convertValuetoCents(value: number) {
-  const correctingDecimalPlacesandConvertingtoNumber = Number(
-    (value * 100).toFixed(2)
-  );
-
-  return correctingDecimalPlacesandConvertingtoNumber;
 }
