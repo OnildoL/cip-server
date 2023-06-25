@@ -29,7 +29,7 @@ export class CreateOrderUseCase {
       company_id,
       goal_id,
       name,
-      amount_in_cent: amount_in_cent * 100,
+      amount_in_cent,
       date,
       comment,
     });

@@ -33,16 +33,21 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 
 - [x] Deve ser possível cadastrar uma meta;
 - [x] Deve ser possível editar uma meta;
+- [x] Deve ser possível obter consolidação do ano;
+- [x] Deve ser possível deletar uma meta;
 
 - [x] Deve ser possível cadastrar um pedido;
 
 ### `Acertos`
 
 - [x] Deve ser possível cadastrar um acerto;
+- [x] Deve ser possível buscar todos os acertos por fornecedor;
+- [x] Deve ser possível editar um acerto;
+- [x] Deve ser possível deletar um acerto;
 
 ### `Devoluções`
 
-- [ ]
+- [x] Deve ser possivel cadastrar uma devolução;
 
 ## Requisitos Não Funcionais
 

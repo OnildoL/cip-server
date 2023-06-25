@@ -3,7 +3,7 @@ import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
 import { convertValuetoCents } from "../library/convert-value-to-cents";
 
-interface OrderProps {
+export interface OrderProps {
   company_id: UniqueEntityID;
   goal_id: UniqueEntityID;
   name: string;
@@ -42,6 +42,11 @@ export class Order extends Entity<OrderProps> {
 
   get goal_id() {
     return this.props.goal_id;
+  }
+
+  set goal_id(goal_id) {
+    this.props.goal_id = goal_id;
+    this.touch();
   }
 
   get name() {
