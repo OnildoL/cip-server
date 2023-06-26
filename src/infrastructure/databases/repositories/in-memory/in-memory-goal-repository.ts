@@ -4,6 +4,20 @@ import { GoalRepository } from "@/application/use-cases/ports/goal-repository";
 export class InMemoryGoalRepository implements GoalRepository {
   public items: Goal[] = [];
 
+  async findManyUniqueYears(companyId: string) {
+    const uniqueYears = new Set<number>();
+
+    this.items
+      .filter((item) => item.company_id.toValue() === companyId)
+      .forEach((item) => {
+        const year = item.date.getFullYear();
+
+        uniqueYears.add(year);
+      });
+
+    return Array.from(uniqueYears);
+  }
+
   async findById(id: string) {
     const result = this.items.find((item) => item.id.toValue() === id);
 
