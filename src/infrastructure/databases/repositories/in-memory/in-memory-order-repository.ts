@@ -1,5 +1,8 @@
 import { Order } from "@/application/entities/order";
-import { OrderRepository } from "@/application/use-cases/ports/order-repository";
+import {
+  OrderParams,
+  OrderRepository,
+} from "@/application/use-cases/ports/order-repository";
 
 export class InMemoryOrderRepository implements OrderRepository {
   public items: Order[] = [];
@@ -12,6 +15,19 @@ export class InMemoryOrderRepository implements OrderRepository {
     }
 
     return result;
+  }
+
+  async findMany({ page, goalId, year }: OrderParams) {
+    const orders = this.items
+      .filter((item) => {
+        return (
+          item.goal_id.toValue() === goalId && item.date.getFullYear() === year
+        );
+      })
+      .sort((a, b) => b.date.getTime() - a.date.getTime())
+      .slice((page - 1) * 20, page * 20);
+
+    return orders;
   }
 
   async create(order: Order) {
