@@ -2,7 +2,7 @@ import { Optional } from "types/optional";
 import { Entity } from "./entity";
 import { UniqueEntityID } from "./value-objects/unique-entity-id";
 
-interface DevolutionProps {
+export interface DevolutionProps {
   company_id: UniqueEntityID;
   status?: string | null;
   date: Date;
